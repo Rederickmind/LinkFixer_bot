@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from aiogram import types
 from aiogram.filters import Command
 
-from constants import LINK_FILTER
+from constants import HELP_TEXT, LINK_FILTER, START_TEXT
 
 load_dotenv()
 BOT_TOKEN = os.getenv('BOT_TOKEN')
@@ -23,12 +23,13 @@ dp = Dispatcher()
 @dp.message(Command('start'))
 async def cmd_start(message: types.Message) -> None:
     """Processes the `start` command"""
-    await message.reply('Bot has been started!')
+    username = message.from_user.full_name
+    await message.reply(START_TEXT.format(username))
 
 
 @dp.message(Command('help'))
 async def help_command(message: types.Message) -> None:
-    await message.reply('helptext')
+    await message.reply(HELP_TEXT)
 
 
 @dp.message(LINK_FILTER)
