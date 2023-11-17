@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  link_fix_bot:
+    build: .
+    container_name: link_fix_bot
+    command: python main.py
+    ports:
+      - 1945:1945
+    volumes:
+      - ./:/app
+    env_file:
+      - .env

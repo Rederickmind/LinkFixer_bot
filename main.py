@@ -39,25 +39,24 @@ async def process_message(message: types.Message):
         r'(https?://(?:www\.)?(?:x|twitter|instagram)\.com/[^\s]+)',
         text
     )
-    modified_text = text
+    modified_urls = []
     # Замена ссылок на новые значения
     for url in urls:
         if 'x.com' in url:
-            modified_text = modified_text.replace(
-                url,
-                url.replace('x.com', 'fixupx.com')
-            )
+            modifiedurl = url.replace('x.com', 'fixupx.com')
         elif 'twitter.com' in url:
-            modified_text = modified_text.replace(
-                url,
-                url.replace('twitter.com', 'vxtwitter.com')
-            )
+            modifiedurl = url.replace('twitter.com', 'vxtwitter.com')
         elif 'instagram.com' in url:
-            modified_text = modified_text.replace(
-                url,
-                url.replace('instagram.com', 'ddinstagram.com')
-            )
-    await message.reply(f"Modified text:\n{modified_text}")
+            modifiedurl = url.replace('instagram.com', 'ddinstagram.com')
+        modified_urls.append(modifiedurl)
+    if modified_urls:
+        if message.from_user.username:
+            modified_text = ("Saved @"
+                             + message.from_user.username
+                             + " a click:\n" + "\n".join(modified_urls))
+        else:
+            modified_text = ("Saved a click:\n" + "\n".join(modified_urls))
+        await message.reply(modified_text)
 
 
 async def main() -> None:
