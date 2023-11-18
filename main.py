@@ -17,7 +17,6 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 # Создаем экземпляр бота
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
-# register_routers(dp)
 
 
 @dp.message(Command('start'))
@@ -42,19 +41,31 @@ async def process_message(message: types.Message):
     )
     # Замена ссылок на новые значения
     for url in urls:
-        modifiedurl = replace(r'(x|twitter)\.com', 'fixupx.com', url)
-        modifiedurl = replace(r'instagram\.com', 'ddinstagram.com', modifiedurl)
+        modifiedurl = replace(
+            r'(x|twitter)\.com',
+            'fixupx.com',
+            url
+        )
+        modifiedurl = replace(
+            r'instagram\.com',
+            'ddinstagram.com',
+            modifiedurl
+        )
         if modifiedurl != url:
             if message.from_user.username:
-                modified_text = ("Saved @"
-                                + message.from_user.username
-                                + " a click:\n" + "\n".join(modified_urls))
+                modified_text = (
+                    "Saved @"
+                    + message.from_user.username
+                    + " a click:\n" + modifiedurl
+                )
             else:
-                modified_text = ("Saved a click:\n" + "\n".join(modified_urls))
+                modified_text = ("Saved a click:\n" + modifiedurl)
             await message.reply(modified_text)
 
-def replace(input, match, replacer)
+
+def replace(input, match, replacer):
     return re.sub(match, replacer, input)
+
 
 async def main() -> None:
     await dp.start_polling(bot)
