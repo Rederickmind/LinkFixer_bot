@@ -63,7 +63,7 @@ async def process_message(message: types.Message):
             await message.reply(modified_text)
 
 
-def replace(input, match, replacer):
+def replace(match, replacer, input):
     return re.sub(match, replacer, input)
 
 
