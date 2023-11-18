@@ -1,12 +1,10 @@
-import os
 import asyncio
+import os
 import re
 
-from aiogram import Bot, Dispatcher
-from dotenv import load_dotenv
-
-from aiogram import types
+from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
+from dotenv import load_dotenv
 
 from constants import HELP_TEXT, LINK_FILTER, START_TEXT
 
