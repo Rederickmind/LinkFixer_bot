@@ -56,4 +56,37 @@ jobs:
           with:
             push: true
             tags: rederickmind/linkfixer_bot:latest
+  
+  deploy:
+    name: Deploy on Server
+    runs-on: ubuntu-latest
+    needs: build_and_push_to_docker_hub
+    steps:
+    - name: executing remote ssh commands to deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        script: |
+          # Выполняет pull образа с DockerHub
+          sudo docker pull rederickmind/linkfixer_bot
+          #остановка всех контейнеров
+          sudo docker stop $(sudo docker ps -a -q)
+          sudo docker run --rm -d -p 1945:1945 rederickmind/linkfixer_bot
+
+  send_message:
+    name: Sending message to RDM Practicum Homework Telegram bot
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+    - name: send message
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: ${{ github.workflow }} успешно выполнен!
+
+
     
