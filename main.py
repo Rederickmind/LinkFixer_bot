@@ -26,11 +26,13 @@ async def cmd_start(message: types.Message) -> None:
 
 @dp.message(Command('help'))
 async def help_command(message: types.Message) -> None:
+    """Processes the `help` command"""
     await message.reply(HELP_TEXT)
 
 
 @dp.message(LINK_FILTER)
 async def process_message(message: types.Message):
+    """Processes the links in messages"""
     text = message.text
     # Поиск ссылок в тексте сообщения
     urls = re.findall(
