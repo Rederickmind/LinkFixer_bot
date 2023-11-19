@@ -29,4 +29,6 @@ START_TEXT = (
 HELP_TEXT = """
 Даже не представляю какие ошибки могут возникнуть при работе с этим ботом,
 но вы всегда можете мне написать в телеграм @Rederickmind
+
+Или в Issues на https://github.com/Rederickmind/LinkFixer_bot
 """
