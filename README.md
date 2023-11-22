@@ -110,3 +110,6 @@ docker compose up --build
 
 - Levushkin Nikita,
 - https://github.com/Rederickmind
+
+**Contributors:**
+- https://github.com/mstralenya
