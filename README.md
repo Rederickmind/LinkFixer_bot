@@ -23,6 +23,8 @@ Bot for Telegram that fixes links for previews
 Python 3.11
 Aiogram 3.1.1
 
+### Бот запущен и доступен по ссылке / Bot deployed and available - https://t.me/ClippyRover_bot
+
 ## Создание бота в Telegram / Telegram Bot Creation
 
 Как получить токен в BotFather:
