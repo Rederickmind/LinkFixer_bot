@@ -36,7 +36,7 @@ async def process_message(message: types.Message):
     text = message.text
     # Поиск ссылок в тексте сообщения
     urls = re.findall(
-        r'(https?://(?:www\.)?(?:x|twitter|instagram)\.com/[^\s]+)',
+        r'(https?:\/\/(?:www\.)?(?:x|twitter|instagram|tiktok)\.com\/[^\s]+)',
         text
     )
     # Замена ссылок на новые значения
@@ -49,6 +49,11 @@ async def process_message(message: types.Message):
         modifiedurl = replace(
             r'instagram\.com',
             'ddinstagram.com',
+            modifiedurl
+        )
+        modifiedurl = replace(
+            r'tiktok\.com',
+            'a.tnktok.com',
             modifiedurl
         )
         if modifiedurl != url:
