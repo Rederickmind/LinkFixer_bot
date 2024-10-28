@@ -2,7 +2,6 @@
 Бот для нормального отображения превью в сообщениях со ссылками на такие сайты как:
 - twitter.com
 - x.com
-- tiktok.com
 - instagram.com*
 
 *Facebook/Instagram — проект Meta Platforms Inc., деятельность которой в России запрещена

@@ -51,11 +51,6 @@ async def process_message(message: types.Message):
             'ddinstagram.com',
             modifiedurl
         )
-        modifiedurl = replace(
-            r'tiktok\.com',
-            'a.tnktok.com',
-            modifiedurl
-        )
         if modifiedurl != url:
             if message.from_user.username:
                 modified_text = (

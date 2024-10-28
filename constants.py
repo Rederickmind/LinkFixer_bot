@@ -8,8 +8,6 @@ LINK_FILTER = (
     | F.text.contains("https://mobile.twitter.com")
     | F.text.contains("https://www.instagram.com")
     | F.text.contains("https://instagram.com")
-    | F.text.contains("https://www.tiktok.com")
-    | F.text.contains("https://tiktok.com")
 )
 
 START_TEXT = (
